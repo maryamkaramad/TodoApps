@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useState } from 'react';
+import Todoform from './component/Todoform';
+import TodoItem from './component/TodoItem';
 
 function App() {
+const [todos, setTodos] = useState([
+  { id:1, title:"buy milk", state: false, discription: "import" },
+  { id:2, title:"call mom", state: true, discription: "import" },
+  { id:3, title:"go to homes sister ", state: false, discription: "import" },
+])
+
+const[form,setForm]=useState(
+  {title:"",discription:""}
+)
+
+const[formStatus,setFormStatus]=useState("add")
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+<div>
+<Todoform form={form} formStatus={formStatus} todos={todos} setTodos={setTodos} setFormStatus={setFormStatus} setForm={setForm}/>
+  {todos.map(todo => <TodoItem todo={todo} todos={todos} setTodos={setTodos} setFormStatus={setFormStatus} setForm={setForm}/> )}
+</div>
   );
 }
 
